@@ -8,19 +8,21 @@
 <body>
     <script src="diesel.js"></script>
     <script>
-        // Ensure the Module is ready before using it
         Module.onRuntimeInitialized = function() {
-            const inputStr = "$(+,1,2,3,4)";
-            const outputStr = ""; // Usually, you'll just allocate space for output
-
-            // Allocate memory for strings in the WebAssembly memory space
-            const inPtr = Module.allocateUTF8(inputStr);
-            const outPtr = Module.allocateUTF8(outputStr);
-
-            const result = Module._diesel(inPtr, outPtr);
-
-            const output = Module.UTF8ToString(outPtr);
-            console.log(output);
+            while(true) {
+                const expr = prompt("DIESEL", "$(+,1,2,3,4)");
+                // const inputStr = "$(+,1,2,3,4)";
+                const outputStr = ""; // Usually, you'll just allocate space for output
+    
+                // Allocate memory for strings in the WebAssembly memory space
+                const inPtr = Module.allocateUTF8(expr);
+                const outPtr = Module.allocateUTF8(outputStr);
+    
+                const result = Module._diesel(inPtr, outPtr);
+    
+                const output = Module.UTF8ToString(outPtr);
+                alert(`Input: ${expr}\nOutput: ${output}`);
+            }
         };
     </script>
 </body>
