@@ -1,3 +1,4 @@
+#! /bin/bash
 cd ./source && tar -xzf ./diesel.tar.gz
 cd ../
 docker run --rm -v ./source:/src -w /src emscripten/emsdk emcc diesel.c \
