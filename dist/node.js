@@ -55,6 +55,9 @@ WebAssembly.instantiate(wasmBuffer, importObject).then((Module) => {
     const res = Module.instance.exports.diesel(inPtr, outPtr);
     console.log(res);
     console.log(UTF8ToString(outPtr));
+
+    // const memoryView = new Uint8Array(importObject.env.memory.buffer, inPtr, 1024);
+    // console.log('Memory content:', memoryView);
 }).catch((err) => {
     console.error('Error instantiating WebAssembly:', err);
 });
