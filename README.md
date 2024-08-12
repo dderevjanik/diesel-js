@@ -14,3 +14,15 @@ Read more <https://www.fourmilab.ch/diesel/>
 ## What is DIESEL JS ?
 
 Diesel JS is a JavaScript implementation of the DIESEL language. It is a simple and easy to use library that allows you to evaluate DIESEL expressions in JavaScript.
+
+## Usage
+
+```javascript
+import { evaluate } from "@diesel/core";
+
+const result = await evaluate("$(+, 1, 2)");
+console.log(result); // 3
+```
+
+### CLI
+
