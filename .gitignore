@@ -1,2 +1,3 @@
+node_modules
 dist/diesel.js
 dist/diesel.wasm

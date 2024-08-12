@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Load the WebAssembly binary
-const wasmBuffer = fs.readFileSync(path.join(__dirname, 'diesel.wasm'));
+const wasmBuffer = fs.readFileSync(path.join(__dirname, '../../core/dist/diesel.wasm'));
 
 // Define the import object, particularly the `env` object
 const importObject = {
