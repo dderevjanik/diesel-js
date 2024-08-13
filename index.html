@@ -1,29 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+
+    <link rel="stylesheet" href="https://esm.sh/bulma@1.0.2/css/bulma.min.css">
+    <link rel="stylesheet" href="https://esm.sh/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+
     <title>DIESEL</title>
-  </head>
-  <body>
+</head>
+
+<body>
+    <div class="hero is-info">
+        <div class="hero-body">
+            <p class="title">
+				DIESEL
+            </p>
+			<p class="subtitle">Dumb Interpretively Executed String Expression Language</p>
+        </div>
+    </div>
+    <div id="app"></div>
     <script src="diesel.js"></script>
-    <script>
-      Module.onRuntimeInitialized = function () {
-        while (true) {
-          const expr = prompt("DIESEL", "$(+,1,2,3,4)");
-          // const inputStr = "$(+,1,2,3,4)";
-          const outputStr = ""; // Usually, you'll just allocate space for output
-
-          // Allocate memory for strings in the WebAssembly memory space
-          const inPtr = Module.allocateUTF8(expr);
-          const outPtr = Module.allocateUTF8(outputStr);
-
-          const result = Module._diesel(inPtr, outPtr);
-
-          const output = Module.UTF8ToString(outPtr);
-          alert(`Input: ${expr}\nOutput: ${output}`);
+    <script type="importmap">
+        {
+            "imports": {
+                "react": "https://esm.sh/react?dev&bundle",
+                "react-dom": "https://esm.sh/react-dom?dev&bundle",
+                "antd": "https://esm.sh/antd@5?dev&bundle",
+                "@ant-design/icons": "https://esm.sh/@ant-design/icons@5?dev&bundle"
+            }
         }
-      };
     </script>
-  </body>
+	<script type="module">
+		import React, { createElement as h } from "react";
+		import { render } from "react-dom";
+
+		const App = () => {
+			return h("div", null, [
+				h("section", { className: "section" }, [
+					h("h1", { className: "title" }, "Evaluate DIESEL Expression"),
+					h("textarea", { className: "textarea", rows: 3 }),
+				]),
+				h("div", { className: "container" }, [
+					h("div", { className: "buttons" }, [
+						h("button", { className: "button is-primary is-pulled-right" }, "Evaluate"),
+					])
+				])
+			])
+
+		}
+
+		const container = document.getElementById('app');
+		render(h(App), document.getElementById("app"));
+
+		Module.onRuntimeInitialized = function () {
+			while (true) {
+			const expr = prompt("DIESEL", "$(+,1,2,3,4)");
+			// const inputStr = "$(+,1,2,3,4)";
+			const outputStr = ""; // Usually, you'll just allocate space for output
+
+			// Allocate memory for strings in the WebAssembly memory space
+			const inPtr = Module.allocateUTF8(expr);
+			const outPtr = Module.allocateUTF8(outputStr);
+
+			const result = Module._diesel(inPtr, outPtr);
+
+			const output = Module.UTF8ToString(outPtr);
+			alert(`Input: ${expr}\nOutput: ${output}`);
+			}
+		};
+	</script>
+</body>
+
 </html>
+
