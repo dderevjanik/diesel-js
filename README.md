@@ -27,6 +27,8 @@ or by using DIESEL CLI
 
 `npx diesel-cli '$(+, 1, 2)'`
 
+check our [updated DIESEL documentation](./docs/DIESEL.md) for more information.
+
 ## Development
 
 ### Compiling DIESEL into WASM
@@ -35,3 +37,8 @@ In order to compile DIESEL into javascript, you need to have Docker installed (e
 
 `npm run compile-diesel`
 
+## Related
+
+- DIESEL Homepage <https://www.fourmilab.ch/diesel/>
+- Updated DIESEL docs [./docs/DIESEL.md](./docs/DIESEL.md)
+- Autocad DIESEL functions reference <https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-27BF17D6-797C-45A0-AE7D-B0344C81AB48>

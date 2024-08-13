@@ -1,1 +1,5 @@
+.github/
+diesel/
+public/
 src/
+.compile-diesel.sh
