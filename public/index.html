@@ -46,8 +46,32 @@
 				history: []
 			}
 
+			componentDidMount() {
+				// Load history from localstorage
+				localStorage.getItem("history") && this.setState({
+					history: JSON.parse(localStorage.getItem("history"))
+				});
+
+				// Load expression from URL
+				const url = new URL(window.location);
+				const params = new URLSearchParams(url.search);
+				const queryValue = params.get('query');
+				if (queryValue && queryValue.length > 1) {
+					// Decode the query parameter (if necessary)
+					const decodedValue = decodeURIComponent(queryValue);
+					this.setState({
+						expression: decodedValue
+					});
+				}
+			}
+
 			#onChange = (event) => {
 				const value = event.target.value;
+
+				const url = new URL(window.location);
+				url.searchParams.set('query', value);
+				window.history.replaceState({}, '', url);
+
 				this.setState({
 					expression: value,
 				});
@@ -62,8 +86,13 @@
 					}
 				}
 				const now = new Date().getTime();
-				const nowISO = new Date(now).toISOString().split("T")[1].split(".")[0];
+				const nowISO = new Date(now).toISOString().split("T").join(" ").split(".")[0];
 				const result = evaluateDIESEL(expression);
+
+				localStorage.setItem("history", JSON.stringify([
+					...this.state.history,
+					{ expression, result, date: now, dateISO: nowISO }
+				]));
 
 				this.setState({
 					history: [
