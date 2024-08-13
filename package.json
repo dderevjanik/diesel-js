@@ -1,27 +1,32 @@
 {
-  "name": "diesel",
-  "version": "1.0.0",
-  "description": "Dumb Interpretively Executed String Expression Language",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile-diesel": "sh ./compile-diesel.sh"
-  },
-  "keywords": [
-    "diesel",
-    "diesel-expression",
-    "diesel-language",
-    "autocad",
-    "autocad-diesel",
-    "autocad-macro"
-  ],
-  "author": "Daniel Derevjanik <daniel.derevjanik@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dderevjanik/diesel-js.git"
-  },
-  "devDependencies": {
-    "@types/node": "^22.2.0"
-  }
+	"name": "diesel",
+	"version": "1.0.0",
+	"description": "Dumb Interpretively Executed String Expression Language",
+	"main": "index.js",
+	"bin": {
+		"diesel": "./dist/diesel.js"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "tsc && cp ./src/diesel.js ./dist/diesel.js && cp ./src/diesel.wasm ./dist/diesel.wasm",
+		"build-gh-pages": "cp ./src/diesel.js ./public/diesel.js && cp ./src/diesel.wasm ./public/diesel.wasm",
+		"compile-diesel": "sh ./compile-diesel.sh"
+	},
+	"keywords": [
+		"diesel",
+		"diesel-expression",
+		"diesel-language",
+		"autocad",
+		"autocad-diesel",
+		"autocad-macro"
+	],
+	"author": "Daniel Derevjanik <daniel.derevjanik@gmail.com>",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/dderevjanik/diesel-js.git"
+	},
+	"devDependencies": {
+		"@types/node": "^22.2.0"
+	}
 }
