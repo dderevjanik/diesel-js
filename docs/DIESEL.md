@@ -85,7 +85,7 @@ The functions in the DIESEL string function documentation are quite powerful and
 
 Based on a condition, return different strings. For example, if a user-provided value is greater than a threshold, return "High"; otherwise, return "Low".
 
-```plaintext
+```lisp
 $(IF, $(>, 50, user_value), "High", "Low")
 ```
 **Explanation**: If `user_value` is greater than 50, "High" is returned; otherwise, "Low" is returned.
@@ -94,7 +94,7 @@ $(IF, $(>, 50, user_value), "High", "Low")
 
 Extract a specific part of a string based on a dynamically provided start position and length.
 
-```plaintext
+```lisp
 $(SUBSTR, "DieselFunctionExample", $(INDEX, 1, "5,7"), 3)
 ```
 **Explanation**: This extracts a substring from "DieselFunctionExample" starting at position `7` for `3` characters. If the `which` value from `$(INDEX)` is dynamically provided, it allows flexible extraction.
@@ -103,7 +103,7 @@ $(SUBSTR, "DieselFunctionExample", $(INDEX, 1, "5,7"), 3)
 
 Calculate the length of a string and use it to adjust formatting or to create a padded string of a certain length.
 
-```plaintext
+```lisp
 $(STRFILL, "-", $(STRLEN, "DIESEL") + 10)
 ```
 **Explanation**: This creates a string of hyphens (`-`) with a length equal to the length of the word "DIESEL" plus 10.
@@ -112,7 +112,7 @@ $(STRFILL, "-", $(STRLEN, "DIESEL") + 10)
 
 Check multiple conditions and return a result based on those conditions.
 
-```plaintext
+```lisp
 $(IF, $(AND, $(=, val1, 10), $(>, val2, 20)), "Condition Met", "Condition Not Met")
 ```
 **Explanation**: This checks if `val1` is equal to 10 and `val2` is greater than 20. If both conditions are true, "Condition Met" is returned; otherwise, "Condition Not Met" is returned.
@@ -121,7 +121,7 @@ $(IF, $(AND, $(=, val1, 10), $(>, val2, 20)), "Condition Met", "Condition Not Me
 
 Perform bitwise operations on integers to customize or manipulate flags/settings.
 
-```plaintext
+```lisp
 $(XOR, 14, 7)
 ```
 **Explanation**: This performs a bitwise XOR operation between 14 and 7, which could be useful for toggling specific bits in a control word.
@@ -130,7 +130,7 @@ $(XOR, 14, 7)
 
 Select and return a specific value from a list of options based on user input.
 
-```plaintext
+```lisp
 $(NTH, user_input, "FirstOption", "SecondOption", "ThirdOption")
 ```
 **Explanation**: If `user_input` is 0, "FirstOption" is returned. If it's 1, "SecondOption" is returned, and so on.
@@ -139,7 +139,7 @@ $(NTH, user_input, "FirstOption", "SecondOption", "ThirdOption")
 
 Generate a string that repeats a specific pattern multiple times, useful in formatting or creating specific patterns.
 
-```plaintext
+```lisp
 $(STRFILL, "*-", 5)
 ```
 **Explanation**: This returns the string "*-*-*-*-*-".
@@ -148,7 +148,7 @@ $(STRFILL, "*-", 5)
 
 Evaluate a complex expression within a string and dynamically adjust the final output.
 
-```plaintext
+```lisp
 $(EVAL, "$(+, $(IF, $(>, 10, value), 5, 0), 20)")
 ```
 **Explanation**: If `value` is less than or equal to 10, the final result is 25 (`5 + 20`). Otherwise, it returns 20.
@@ -157,7 +157,7 @@ $(EVAL, "$(+, $(IF, $(>, 10, value), 5, 0), 20)")
 
 Extract a value from a string based on a dynamic condition, such as a user selection.
 
-```plaintext
+```lisp
 $(INDEX, $(IF, $(=, user_choice, 1), 0, 2), "First,Second,Third")
 ```
 **Explanation**: If `user_choice` is 1, it returns "First"; otherwise, it returns "Third".
@@ -166,7 +166,7 @@ $(INDEX, $(IF, $(=, user_choice, 1), 0, 2), "First,Second,Third")
 
 Convert a string to upper case before processing it further to ensure consistency in comparison or display.
 
-```plaintext
+```lisp
 $(UPPER, "diesel functions")
 ```
 **Explanation**: This converts "diesel functions" to "DIESEL FUNCTIONS".
