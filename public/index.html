@@ -28,6 +28,7 @@
 	<script type="module">
 		import React, { createElement as h } from "react";
 		import ReactDOM from "react-dom";
+
 		/** @param {string} err */
 		function errToMessage(err) {
 			//	$?		Syntax error (usually a missing right  parenthesis
@@ -83,6 +84,14 @@
 						expression: decodedValue
 					});
 				}
+			}
+
+			#onRemoveHistoryItem = (datetime) => {
+				const newHistory = this.state.history.filter((item) => item.date !== datetime);
+				localStorage.setItem("history", JSON.stringify(newHistory));
+				this.setState({
+					history: newHistory
+				});
 			}
 
 			#onChange = (event) => {
@@ -155,30 +164,32 @@
 					h("br"),
 					h("div", { className: "container" }, this.state.history.sort((a, b) => new Date(b.date) - new Date(a.date)).map((item) => {
 						if (item.result.status === 0) {
-							return h("div", { key: item.date, className: "alert alert-success", role: "alert" }, [
+							return h("div", { key: item.date, className: "alert alert-success alert-dismissible", role: "alert" }, [
 								h("div", null, [
 									h("b", null, "<< "),
 									item.expression
 								]),
+								h("button", { className: "btn-close", onClick: () => this.#onRemoveHistoryItem(item.date) }),
 								h("div", null, [
 									h("b", null, ">> "),
 									item.result.output
 								]),
 								h("div", { className: "text-end" },
-									h("small", null, item.dateISO))
+									h("small", null, item.dateISO)),
 							]);
 						} else {
-							return h("div", { key: item.date, className: "alert alert-danger", role: "alert" }, [
+							return h("div", { key: item.date, className: "alert alert-danger alert-dismissible", role: "alert" }, [
 								h("div", null, [
 									h("b", null, "<< "),
 									item.expression
 								]),
+								h("button", { className: "btn-close", onClick: () => this.#onRemoveHistoryItem(item.date) }),
 								h("div", null, [
 									h("b", null, ">> "),
 									item.result.output
 								]),
 								h("div", null, [
-									h("b", null, "Unexpected Error: "),
+									h("b", null, `${errToMessage(item.result.output)}: `),
 									item.result.status
 								]),
 								h("div", { className: "text-end" },
