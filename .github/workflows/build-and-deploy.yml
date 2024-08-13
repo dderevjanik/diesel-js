@@ -1,20 +1,19 @@
 name: Build and Deploy
 on: [push]
 permissions:
-  contents: write
+    contents: write
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v4
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout 🛎️
+              uses: actions/checkout@v4
 
-      - name: Build 🔧
-        run: |
-          ./compile.sh
+            - name: Build 🔧
+              run: npm run build-gh-pages
 
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./packages/js/public
-          branch: gh-pages
+            - name: Deploy 🚀
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  folder: ./public
+                  branch: gh-pages
