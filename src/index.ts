@@ -7,6 +7,49 @@ const moduleInitialized = new Promise<void>((resolve) => {
     };
 });
 
+export function parseErrOutput(output: string, position: string) {
+	let match: RegExpExecArray | null = null;
+	if (output.trim() === "$?") {
+		return {
+			dieselName: "$?",
+			name: "Syntax error",
+			message: `Syntax error at position ${position}`
+		}
+	} else if (output.trim() === "$++") {
+		return {
+			dieselName: "$++",
+			name: "Output string too long",
+			message: `Output string too long at position ${position}`
+		}
+ 	}
+
+	// $(func,??)
+	match = /\$\(\s*([a-zA-Z_]\w*)\s*,\?\?\)/g.exec(output);
+	if (match && match[1]) {
+		return {
+			dieselName: "$(func,??)",
+			name: "Incorrect function arguments",
+			message: `Incorrect function '${match[1]}' arguments at position ${position}`
+		}
+	}
+
+	// $(func)??
+	match = /\$\(\s*([a-zA-Z_]\w*)\s*\)\?\?/g.exec(output)
+	if (match && match[1]) {
+		return {
+			dieselName: "$(func)??",
+			name: "Unknown function",
+			message: `Unknown function ${match[1]} at position ${position}`
+		}
+	}
+
+	return {
+		diselName: "Unknown",
+		name: "Unknown error",
+		message: `Unknown error at position ${position}`
+	};
+}
+
 /**
  * DIESEL expression evaluator
  *
@@ -22,10 +65,12 @@ export async function evaluate(expresion: string) {
     const inPtr = Module.allocateUTF8(expresion);
     const outPtr = Module.allocateUTF8(outputStr);
 
-    const result = Module._diesel(inPtr, outPtr);
-    if (result > 0) {
-        throw new Error(`Error: ${result}`);
+    const position = Module._diesel(inPtr, outPtr);
+	const output = Module.UTF8ToString(outPtr);
+    if (position > 0) { // 0 - means no error
+		const err = parseErrOutput(output, position);
+        throw new Error(err.message);
     }
-    const output = Module.UTF8ToString(outPtr);
+
     return output;
 }
