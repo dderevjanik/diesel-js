@@ -25,3 +25,11 @@ console.log(result); // 3
 
 ### CLI
 
+## Development
+
+### Compiling DIESEL into WASM
+
+In order to compile DIESEL into javascript, you need to have Docker installed (emscripten is used to compile the C code into WebAssembly).
+
+`npm run compile-diesel`
+
