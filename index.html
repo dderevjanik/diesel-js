@@ -7,71 +7,140 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 
-    <link rel="stylesheet" href="https://esm.sh/bulma@1.0.2/css/bulma.min.css">
-    <link rel="stylesheet" href="https://esm.sh/@fortawesome/fontawesome-free@5.15.3/css/all.min.css">
+    <!-- <link rel="stylesheet" href="https://esm.sh/bulma@1.0.2/css/bulma.min.css"> -->
+    <!-- <link rel="stylesheet" href="https://esm.sh/@fortawesome/fontawesome-free@5.15.3/css/all.min.css"> -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
     <title>DIESEL</title>
 </head>
 
 <body>
-    <div class="hero is-info">
-        <div class="hero-body">
-            <p class="title">
-				DIESEL
-            </p>
-			<p class="subtitle">Dumb Interpretively Executed String Expression Language</p>
-        </div>
-    </div>
-    <div id="app"></div>
+    <div class="section" id="app"></div>
     <script src="diesel.js"></script>
     <script type="importmap">
         {
             "imports": {
-                "react": "https://esm.sh/react?dev&bundle",
-                "react-dom": "https://esm.sh/react-dom?dev&bundle",
-                "antd": "https://esm.sh/antd@5?dev&bundle",
-                "@ant-design/icons": "https://esm.sh/@ant-design/icons@5?dev&bundle"
+                "react": "https://esm.sh/react@17.0.2?dev&bundle",
+                "react-dom": "https://esm.sh/react-dom@?17.0.2dev&bundle"
             }
         }
     </script>
 	<script type="module">
 		import React, { createElement as h } from "react";
-		import { render } from "react-dom";
+		import ReactDOM from "react-dom";
 
-		const App = () => {
-			return h("div", null, [
-				h("section", { className: "section" }, [
-					h("h1", { className: "title" }, "Evaluate DIESEL Expression"),
-					h("textarea", { className: "textarea", rows: 3 }),
-				]),
-				h("div", { className: "container" }, [
-					h("div", { className: "buttons" }, [
-						h("button", { className: "button is-primary is-pulled-right" }, "Evaluate"),
-					])
-				])
-			])
-
-		}
-
-		const container = document.getElementById('app');
-		render(h(App), document.getElementById("app"));
-
-		Module.onRuntimeInitialized = function () {
-			while (true) {
-			const expr = prompt("DIESEL", "$(+,1,2,3,4)");
-			// const inputStr = "$(+,1,2,3,4)";
-			const outputStr = ""; // Usually, you'll just allocate space for output
-
+		function evaluateDIESEL(expression) {
 			// Allocate memory for strings in the WebAssembly memory space
-			const inPtr = Module.allocateUTF8(expr);
-			const outPtr = Module.allocateUTF8(outputStr);
+			const inPtr = Module.allocateUTF8(expression);
+			const outPtr = Module.allocateUTF8("");
 
-			const result = Module._diesel(inPtr, outPtr);
+			const status = Module._diesel(inPtr, outPtr);
 
 			const output = Module.UTF8ToString(outPtr);
-			alert(`Input: ${expr}\nOutput: ${output}`);
+			return { status, output };
+		}
+
+		class App extends React.Component {
+			state = {
+				expression: "$(+,1,2,3)",
+				history: []
 			}
-		};
+
+			#onChange = (event) => {
+				const value = event.target.value;
+				this.setState({
+					expression: value,
+				});
+			}
+
+
+			#onSubmit = () => {
+				const { expression } = this.state;
+				if (this.state.history.length) {
+					if (this.state.history[0].expression === expression) {
+						return;
+					}
+				}
+				const now = new Date().getTime();
+				const nowISO = new Date(now).toISOString().split("T")[1].split(".")[0];
+				const result = evaluateDIESEL(expression);
+
+				this.setState({
+					history: [
+						...this.state.history,
+						{ expression, result, date: now, dateISO: nowISO }
+					]
+				});
+			}
+
+			render() {
+				return h("div", null, [
+					h("nav", { className: "navbar navbar-expand-lg bg-body-tertiary" }, [
+						h("div", { className: "container-fluid" }, [
+							h("a", { className: "navbar-brand", href: "#"}, "DIESEL")
+						])
+					]),
+					h("br"),
+					h("div", { className: "container" }, [
+						h("p", null, [
+							"This Dumb Interpretively Executed String Expression Language is the kernel of a macro language you can customise by adding C code and embedding it into your program. ",
+							h("a", { href: "https://github.com/dderevjanik/diesel-js/blob/main/docs/DIESEL.md "}, "See DIESEL documentation for syntax"),
+						]),
+						h("p", null, [
+							h("b", null, "Enter a DIESEL expression below and click on the Evaluate button to see the result.")
+						]),
+						h("div", { className: "input-group" }, [
+							h("input", {
+								className: "form-control",
+								placeholder: "$(+,1,2,3,4,5)",
+								onChange: this.#onChange,
+								value: this.state.expression
+							}),
+							h("button", {
+								className: "btn btn-primary",
+								onClick: this.#onSubmit,
+							}, "Evaluate"),
+						])
+					]),
+					h("br"),
+					h("div", { className: "container" }, this.state.history.sort((a, b) => new Date(b.date) - new Date(a.date)).map((item) => {
+						if (item.result.status === 0) {
+							return h("div", { key: item.date, className: "alert alert-primary", role: "alert" }, [
+								h("div", null, [
+									h("b", null, "<< "),
+									item.expression
+								]),
+								h("div", null, [
+									h("b", null, ">> "),
+									item.result.output
+								]),
+								h("div", { className: "text-end" },
+									h("small", null, item.dateISO))
+							]);
+						} else {
+							return h("div", { key: item.date, className: "alert alert-danger", role: "alert" }, [
+								h("div", null, [
+									h("b", null, "<< "),
+									item.expression
+								]),
+								h("div", null, [
+									h("b", null, ">> "),
+									item.result.output
+								]),
+								h("div", null, [
+									h("b", null, "Unexpected Error: "),
+									item.result.status
+								]),
+								h("div", { className: "text-end" },
+									h("small", null, item.dateISO))
+							]);
+						}
+					}))
+				]);
+			}
+		}
+
+		ReactDOM.render(h(App), document.getElementById("app"));
 	</script>
 </body>
 
