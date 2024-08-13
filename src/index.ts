@@ -9,8 +9,11 @@ const moduleInitialized = new Promise<void>((resolve) => {
 
 /**
  * DIESEL expression evaluator
+ *
  * @param expresion DIESEL expression to evaluate
  * @returns result of the evaluation
+ *
+ * @see {@link https://www.fourmilab.ch/diesel/}
  */
 export async function evaluate(expresion: string) {
     await moduleInitialized;
@@ -18,7 +21,7 @@ export async function evaluate(expresion: string) {
 
     const inPtr = Module.allocateUTF8(expresion);
     const outPtr = Module.allocateUTF8(outputStr);
-  
+
     const result = Module._diesel(inPtr, outPtr);
     if (result > 0) {
         throw new Error(`Error: ${result}`);

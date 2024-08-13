@@ -23,7 +23,9 @@ const result = await evaluate("$(+, 1, 2)");
 console.log(result); // 3
 ```
 
-### CLI
+or by using DIESEL CLI
+
+`npx diesel-cli '$(+, 1, 2)'`
 
 ## Development
 
