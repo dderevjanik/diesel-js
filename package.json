@@ -18,7 +18,8 @@
 		"diesel-language",
 		"autocad",
 		"autocad-diesel",
-		"autocad-macro"
+		"autocad-macro",
+		"macro"
 	],
 	"author": "Daniel Derevjanik <daniel.derevjanik@gmail.com>",
 	"license": "MIT",

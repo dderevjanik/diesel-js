@@ -1,6 +1,13 @@
 # DIESEL
 
+DIESEL provides various functions for string and arithmetic operations. This documentation covers functions for arithmetic, comparison, logical operations, and string manipulations.
+
+> [!NOTE]
+> This documentation is based on the original DIESEL documentation available at [Fourmilab](https://www.fourmilab.ch/diesel/). AutoCAD DIESEL functions are **not supported** in this library.
+
 ## Arithmetic Functions
+
+Functions for performing basic arithmetic operations:
 
 - `$(+,<val1>,<val2>,...<valn>)`
   - Returns the sum of the numbers `<val1>`, `<val2>`, ... `<valn>`.
@@ -15,6 +22,8 @@
   - Returns the result of dividing the number `<val1>` by `<val2>`, ... `<valn>`.
 
 ## Comparison Functions
+
+Functions for comparing values and strings:
 
 - `$(=,<val1>,<val2>)`
   - Returns `1` if the numbers `<val1>` and `<val2>` are equal, otherwise returns `0`.
@@ -36,6 +45,8 @@
 
 ## Logical Functions
 
+Functions for performing bitwise logical operations:
+
 - `$(AND,<val1>,<val2>,...<valn>)`
   - Returns the bitwise logical AND of the integers `<val1>` through `<valn>`.
 
@@ -46,6 +57,8 @@
   - Returns the bitwise logical XOR of the integers `<val1>` through `<valn>`.
 
 ## String Functions
+
+Functions for manipulating and analyzing strings:
 
 - `$(EQ,<val1>,<val2>)`
   - Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.

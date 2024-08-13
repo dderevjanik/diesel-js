@@ -22,6 +22,9 @@ Diesel JS supports **VARIABLES**, enabling you to use `SETVAR` and `GETVAR` func
 
 ## Usage
 
+> [!WARNING]
+> This library is not published to NPM yet, so you need to clone the repository and build it yourself.
+
 ### Browser
 
 ### Node
@@ -41,7 +44,7 @@ or by installing diesel-cli globally `npm i -g diesel-cli` and then using `diese
 
 ### Examples
 
-[Diesel Examples](./docs/DIESEL.md#examples)
+Checkout [Diesel Examples](./docs/DIESEL.md#examples)
 
 ## Differences with AutoCAD DIESEL
 
@@ -57,6 +60,14 @@ AutoCAD extends DIESEL with additional functions and variables. This library doe
 In order to compile DIESEL into javascript, you need to have [Docker](https://www.docker.com/) installed (emscripten is used to compile the C code into WebAssembly).
 
 `npm run compile-diesel`
+
+## TODO
+
+- [ ] Add `UNIXTENSIONS` functions
+- [ ] Add AutoCAD functions (`rtos`, `angtos`, etc.)
+- [ ] Add unit test based on `regress.dsl` and `regress.mas` from the original DIESEL source code
+- [ ] Improve error messages
+- [ ] Publish to NPM
 
 ## Related
 
