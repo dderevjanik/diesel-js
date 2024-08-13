@@ -85,6 +85,22 @@
 - `$(SETVAR,varname,value)`
   - Stores the string `value` into `varname`. If no variable called `varname` exists, a new variable is created.
 
+## Errors
+
+Generally, if you make a mistake in a DIESEL expression, what went wrong may not be obvious. Depending on the nature of the error, DIESEL embeds an error indication in the output stream.
+
+- `$?`
+  - Syntax error (usually a missing right parenthesis or a runaway string)
+
+- `$(func,??)`
+  - Incorrect argument to function `func`
+
+- `$(func)??`
+  - Unknown function `func`
+
+- `$(++)`
+  - Output string too long—evaluation truncated
+
 ## Examples
 
 The functions in the DIESEL string function documentation are quite powerful and can cover a wide range of complex scenarios. Below are some examples of scenarios and how the functions can be used to handle them:

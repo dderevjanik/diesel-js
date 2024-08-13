@@ -33,7 +33,7 @@ const args = parseArgs({
 				"	diesel [EXPRESSION]",
 				"",
 				"DESCRIPTION",
-				"   is the kernel of a macro language you can customise",
+				"   diesel is the kernel of a macro language you can customise",
 				"   by adding C code and embedding it into your program.",
 				"",
 				"OPTIONS",
@@ -43,7 +43,7 @@ const args = parseArgs({
 				"USAGE",
 				"	Evaluate an expression",
 				"",
-				`	diesel $(+,1,2,3,4,5)`,
+				"	diesel $(+,1,2,3,4,5)",
 				"	output: 15",
 				"",
 			].join("\n"));
