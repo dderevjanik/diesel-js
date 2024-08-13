@@ -112,11 +112,12 @@
 					h("br"),
 					h("div", { className: "container" }, [
 						h("p", null, [
-							"This Dumb Interpretively Executed String Expression Language is the kernel of a macro language you can customise by adding C code and embedding it into your program. ",
-							h("a", { href: "https://github.com/dderevjanik/diesel-js/blob/main/docs/DIESEL.md "}, "See DIESEL documentation for syntax"),
+							h("small", null, "This Dumb Interpretively Executed String Expression Language. "),
+							// "This Dumb Interpretively Executed String Expression Language is the kernel of a macro language you can customise by adding C code and embedding it into your program. ",
+							h("a", { href: "https://github.com/dderevjanik/diesel-js/blob/main/docs/DIESEL.md "}, "DIESEL documentation"),
 						]),
 						h("p", null, [
-							h("b", null, "Enter a DIESEL expression below and click on the Evaluate button to see the result.")
+							h("b", null, "Enter a DIESEL expression below.")
 						]),
 						h("div", { className: "input-group" }, [
 							h("input", {
@@ -128,7 +129,7 @@
 							h("button", {
 								className: "btn btn-primary",
 								onClick: this.#onSubmit,
-							}, "Evaluate"),
+							}, "Eval"),
 						])
 					]),
 					h("br"),
