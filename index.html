@@ -135,7 +135,7 @@
 					h("br"),
 					h("div", { className: "container" }, this.state.history.sort((a, b) => new Date(b.date) - new Date(a.date)).map((item) => {
 						if (item.result.status === 0) {
-							return h("div", { key: item.date, className: "alert alert-primary", role: "alert" }, [
+							return h("div", { key: item.date, className: "alert alert-success", role: "alert" }, [
 								h("div", null, [
 									h("b", null, "<< "),
 									item.expression
