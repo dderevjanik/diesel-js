@@ -1,81 +1,89 @@
 # DIESEL
 
-## Arithmetic Operations
+## Arithmetic Functions
 
-- `$(+, val1, val2, …valn)`
-  - **Description**: Returns the sum of the numbers `val1`, `val2`, …`valn`.
+- `$(+,<val1>,<val2>,...<valn>)`
+  - Returns the sum of the numbers `<val1>`, `<val2>`, ... `<valn>`.
 
-- `$(−, val1, val2, …valn)`
-  - **Description**: Returns the result of subtracting the numbers `val2` through `valn` from `val1`.
+- `$(-,<val1>,<val2>,...<valn>)`
+  - Returns the result of subtracting the numbers `<val2>` through `<valn>` from `<val1>`.
 
-- `$(*, val1, val2, …valn)`
-  - **Description**: Returns the result of multiplying the numbers `val1`, `val2`, …`valn`.
+- `$(*,<val1>,<val2>,...<valn>)`
+  - Returns the result of multiplying the numbers `<val1>`, `<val2>`, ... `<valn>`.
 
-- `$(/, val1, val2, …valn)`
-  - **Description**: Returns the result of dividing the number `val1` by `val2`, …`valn`.
+- `$(/,<val1>,<val2>,...<valn>)`
+  - Returns the result of dividing the number `<val1>` by `<val2>`, ... `<valn>`.
 
-## Comparison Operations
+## Comparison Functions
 
-- `$(=, val1, val2)`
-  - **Description**: Returns `1` if the numbers `val1` and `val2` are equal, otherwise returns `0`.
+- `$(=,<val1>,<val2>)`
+  - Returns `1` if the numbers `<val1>` and `<val2>` are equal, otherwise returns `0`.
 
-- `$(<, val1, val2)`
-  - **Description**: Returns `1` if the number `val1` is less than `val2`, otherwise returns `0`.
+- `$(<,<val1>,<val2>)`
+  - Returns `1` if the number `<val1>` is less than `<val2>`, otherwise returns `0`.
 
-- `$(>, val1, val2)`
-  - **Description**: Returns `1` if the number `val1` is greater than `val2`, otherwise returns `0`.
+- `$(>,<val1>,<val2>)`
+  - Returns `1` if the number `<val1>` is greater than `<val2>`, otherwise returns `0`.
 
-- `$(!=, val1, val2)`
-  - **Description**: Returns `1` if the numbers `val1` and `val2` are not equal, otherwise returns `0`.
+- `$(!=,<val1>,<val2>)`
+  - Returns `1` if the numbers `<val1>` and `<val2>` are not equal, otherwise returns `0`.
 
-- `$(<=, val1, val2)`
-  - **Description**: Returns `1` if the number `val1` is less than or equal to `val2`, otherwise returns `0`.
+- `$(<=,<val1>,<val2>)`
+  - Returns `1` if the number `<val1>` is less than or equal to `<val2>`, otherwise returns `0`.
 
-- `$(>=, val1, val2)`
-  - **Description**: Returns `1` if the number `val1` is greater than or equal to `val2`, otherwise returns `0`.
+- `$(>=,<val1>,<val2>)`
+  - Returns `1` if the number `<val1>` is greater than or equal to `<val2>`, otherwise returns `0`.
 
-## Logical Operations
+## Logical Functions
 
-- `$(AND, val1, val2, …valn)`
-  - **Description**: Returns the bitwise logical AND of the integers `val1` through `valn`.
+- `$(AND,<val1>,<val2>,...<valn>)`
+  - Returns the bitwise logical AND of the integers `<val1>` through `<valn>`.
 
-- `$(OR, val1, val2, …valn)`
-  - **Description**: Returns the bitwise logical OR of the integers `val1` through `valn`.
+- `$(OR,<val1>,<val2>,...<valn>)`
+  - Returns the bitwise logical OR of the integers `<val1>` through `<valn>`.
 
-- `$(XOR, val1, val2, …valn)`
-  - **Description**: Returns the bitwise logical XOR of the integers `val1` through `valn`.
+- `$(XOR,<val1>,<val2>,...<valn>)`
+  - Returns the bitwise logical XOR of the integers `<val1>` through `<valn>`.
 
 ## String Functions
 
-- `$(EQ, val1, val2)`
-  - **Description**: Returns `1` if the strings `val1` and `val2` are identical, otherwise returns `0`.
+- `$(EQ,<val1>,<val2>)`
+  - Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.
 
-- `$(EVAL, str)`
-  - **Description**: Evaluates the string `str` using the DIESEL evaluator and returns the result.
+- `$(EVAL,<str>)`
+  - Evaluates the string `<str>` using the DIESEL evaluator and returns the result.
 
-- `$(FIX, value)`
-  - **Description**: Truncates the real number `value` to an integer by discarding any fractional part.
+- `$(FIX,<value>)`
+  - Truncates the real number `<value>` to an integer by discarding any fractional part.
 
-- `$(IF, expr, dotrue, dofalse)`
-  - **Description**: Evaluates and returns `dotrue` if `expr` is nonzero; otherwise, evaluates and returns `dofalse`. Note that the branch not chosen by `expr` is not evaluated.
+- `$(IF,<expr>,<dotrue>,<dofalse>)`
+  - Evaluates and returns `<dotrue>` if `<expr>` is nonzero, otherwise evaluates and returns `<dofalse>`. The branch not chosen is not evaluated.
 
-- `$(INDEX, which, string)`
-  - **Description**: Extracts and returns a value from the comma-delimited string `string` based on the index `which`, where the first item is numbered zero.
+- `$(INDEX,<which>,<string>)`
+  - Extracts and returns the value from `<string>`, which is delimited by commas. `<which>` selects the value, with the first item numbered zero.
 
-- `$(NTH, which, arg0, arg1, …argN)`
-  - **Description**: Evaluates and returns the argument selected by `which`. If `which` is `0`, `arg0` is returned, and so on. Note: Unlike `$(INDEX)`, `$(NTH)` returns one of the series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string passed as a single argument. Arguments not selected by `which` are not evaluated.
+- `$(NTH,<which>,<arg0>,<arg1>,...<argN>)`
+  - Evaluates and returns the argument selected by `<which>`. `<which>` starts at `0` for `<arg0>`, and so on. Unlike `$(INDEX)`, it returns one of a series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string.
 
-- `$(STRFILL, string, ncopies)`
-  - **Description**: Returns the result of concatenating `ncopies` of `string`.
+- `$(STRFILL,<string>,<ncopies>)`
+  - Returns the result of concatenating `<ncopies>` of `<string>`.
 
-- `$(STRLEN, string)`
-  - **Description**: Returns the length of `string` in characters.
+- `$(STRLEN,<string>)`
+  - Returns the length of `<string>` in characters.
 
-- `$(SUBSTR, string, start, length)`
-  - **Description**: Returns the substring of `string` starting at character `start` and extending for `length` characters. Characters in the string are numbered from 1. If `length` is omitted, the entire remaining length of the string is returned.
+- `$(SUBSTR,<string>,<start>,<length>)`
+  - Returns the substring of `<string>` starting at character `<start>` and extending for `<length>` characters. If `<length>` is omitted, returns the entire remaining length of the string. Characters are numbered from `1`.
 
-- `$(UPPER, string)`
-  - **Description**: Returns the `string` converted to upper case according to the rules of the current locale.
+- `$(UPPER,<string>)`
+  - Converts `<string>` to uppercase according to the rules of the current locale and returns it.
+
+## Variables
+
+- `$(GETVAR,varname)`
+  - Returns the value stored in `varname`. If no variable with the name `varname` exists, a bad argument error is reported.
+
+- `$(SETVAR,varname,value)`
+  - Stores the string `value` into `varname`. If no variable called `varname` exists, a new variable is created.
 
 ## Examples
 
