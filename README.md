@@ -4,7 +4,6 @@
 
 **Diesel is widely used in AutoCAD**
 
-Dumb Interpretively Evaluated String Expression Language
 This **“Dumb Interpretively Executed String Expression Language”** is the kernel of a macro language you can customise by adding C code and embedding it into your program.
 
 It is short, written in portable C, and is readily integrated into any program. It is useful primarily to programs which need a very rudimentary macro expansion facility without the complexity of a full language such as Lisp or FORTH.
