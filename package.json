@@ -7,7 +7,7 @@
 		"diesel": "./dist/diesel.js"
 	},
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"test": "TS_NODE_TRANSPILE_ONLY=true node --test --loader=ts-node/esm --no-warnings src/*.test.ts",
 		"build": "tsc && cp ./src/diesel.js ./dist/diesel.js && cp ./src/diesel.wasm ./dist/diesel.wasm",
 		"build-gh-pages": "cp ./src/diesel.js ./public/diesel.js && cp ./src/diesel.wasm ./public/diesel.wasm",
 		"compile-diesel": "sh ./compile-diesel.sh"
@@ -28,6 +28,8 @@
 		"url": "git+https://github.com/dderevjanik/diesel-js.git"
 	},
 	"devDependencies": {
-		"@types/node": "^22.2.0"
+		"@types/node": "^22.2.0",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.5.4"
 	}
 }
