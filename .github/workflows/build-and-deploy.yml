@@ -10,7 +10,12 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Setup Node.js environment 🚀
-              run: npm install
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 22
+
+            - name: Install dependencies ⚙️
+              run: npm i
 
             - name: Run tests 🧪
               run: npm test
