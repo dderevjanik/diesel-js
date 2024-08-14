@@ -221,17 +221,19 @@
 						h("p", null, [
 							h("b", null, "Enter a DIESEL expression below.")
 						]),
-						h("div", { className: "input-group" }, [
-							h("input", {
-								className: "form-control",
-								placeholder: "$(+,1,2,3,4,5)",
-								onChange: this.#onChange,
-								value: this.state.expression
-							}),
-							h("button", {
-								className: "btn btn-primary",
-								onClick: this.#onSubmit,
-							}, "Eval"),
+						h("form", { onSubmit: this.#onSubmit }, [
+							h("div", { className: "input-group" }, [
+								h("input", {
+									className: "form-control",
+									placeholder: "$(+,1,2,3,4,5)",
+									onChange: this.#onChange,
+									value: this.state.expression
+								}),
+								h("button", {
+									type: "submit",
+									className: "btn btn-primary",
+								}, "Eval"),
+							])
 						])
 					]),
 					h("br"),
