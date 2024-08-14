@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, test } from "node:test";
-import { evaluate } from "./";
+import { evaluate } from "./index";
 
 describe("Arithmetic", () => {
 
