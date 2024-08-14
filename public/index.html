@@ -184,7 +184,8 @@
 			}
 
 
-			#onSubmit = () => {
+			#onSubmit = (e) => {
+				e.preventDefault();
 				const { expression } = this.state;
 				if (expression.trim().length === 0) {
 					return;
