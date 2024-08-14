@@ -28,24 +28,47 @@
 		import ReactDOM from "react-dom";
 
 		/** @param {string} err */
-		function errToMessage(err) {
-			//	$?		Syntax error (usually a missing right  parenthesis
-			// or runaway string).
-			if (err.includes("$?")) {
-				return "Syntax error";
-			// $(<func>,??)	Incorrect arguments to <func>.
-			} else if (err.includes(",??")) {
-				return "Incorrect arguments to function";
-			// (<func>)??	Unknown function <func>.
- 			} else if (err.includes(")??")) {
-				return "Unknown function";
-			// $++		Output string too long--evaluation truncated.
-			} else if (err.includes("$++")) {
-				return "Output string too long";
-			// Unexpected Error
-			} else {
-				return ("Unexpected Error");
+		function parseErrOutput(output, position) {
+			let match = null;
+			if (output.trim() === "$?") {
+				return {
+					dieselName: "$?",
+					name: "Syntax error",
+					message: `Syntax error at position ${position}`
+				}
+			} else if (output.trim() === "$++") {
+				return {
+					dieselName: "$++",
+					name: "Output string too long",
+					message: `Output string too long at position ${position}`
+				}
 			}
+
+			// $(func,??)
+			match = /\$\(\s*([a-zA-Z_]\w*)\s*,\?\?\)/g.exec(output);
+			if (match && match[1]) {
+				return {
+					dieselName: "$(func,??)",
+					name: "Incorrect function arguments",
+					message: `Incorrect function '${match[1]}' arguments at position ${position}`
+				}
+			}
+
+			// $(func)??
+			match = /\$\(\s*([a-zA-Z_]\w*)\s*\)\?\?/g.exec(output)
+			if (match && match[1]) {
+				return {
+					dieselName: "$(func)??",
+					name: "Unknown function",
+					message: `Unknown function ${match[1]} at position ${position}`
+				}
+			}
+
+			return {
+				diselName: "Unknown",
+				name: "Unknown error",
+				message: `Unknown error at position ${position}`
+			};
 		}
 
 		function evaluateDIESEL(expression) {
@@ -194,8 +217,8 @@
 									item.result.output
 								]),
 								h("div", null, [
-									h("b", null, `${errToMessage(item.result.output)}: `),
-									item.result.status
+									// h("b", null, `${parseErrOutput(item.result.output, item.result.status).message}: `),
+									parseErrOutput(item.result.output, item.result.status).message
 								]),
 								h("div", { className: "text-end" },
 									h("small", null, item.dateISO))
