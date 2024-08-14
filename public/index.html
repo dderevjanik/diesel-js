@@ -125,6 +125,16 @@
 		}
 
 		class App extends React.Component {
+			/**
+			 * @type {{
+				expression: string;
+				history: Array<{
+					expression: string;
+					result: { status: string; output: string; };
+					date: number;
+					dateISO: string;
+				}>;
+			}} state */
 			state = {
 				expression: "$(+,1,2,3)",
 				history: []
