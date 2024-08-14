@@ -12,6 +12,7 @@ cd ../
 docker run --rm -v ./diesel:/src -w /src emscripten/emsdk emcc diesel.c \
     -s WASM=1 \
 	-DVARIABLES \
+	-DUNIXTENSIONS \
 	-include stdlib.h \
     -s EXPORTED_FUNCTIONS="['_diesel']" \
     -s EXPORTED_RUNTIME_METHODS="['allocateUTF8', 'UTF8ToString']" \
