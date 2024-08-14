@@ -3,7 +3,7 @@
 DIESEL provides various functions for string and arithmetic operations. This documentation covers functions for arithmetic, comparison, logical operations, and string manipulations.
 
 > [!NOTE]
-> This documentation is based on the original DIESEL documentation available at [Fourmilab](https://www.fourmilab.ch/diesel/). AutoCAD DIESEL functions are **not supported** in this library.
+> This documentation is based on the original DIESEL documentation available at [Fourmilab](https://www.fourmilab.ch/diesel/). AutoCAD DIESEL functions (e.g. `angtos`, `rtos`) are **not supported** in this library.
 
 ## Arithmetic Functions
 
