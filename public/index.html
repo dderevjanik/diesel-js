@@ -261,11 +261,8 @@
 								h("button", { className: "btn-close", onClick: () => this.#onRemoveHistoryItem(item.date) }),
 								h("div", null, [
 									h("b", null, ">> "),
-									item.result.output
-								]),
-								h("div", null, [
-									// h("b", null, `${parseErrOutput(item.result.output, item.result.status).message}: `),
-									parseErrOutput(item.result.output, item.result.status).message
+									h("span", null, `${item.result.output.trim()}\u00A0\u00A0\u00A0`),
+									h("i", null, parseErrOutput(item.result.output, item.result.status).message)
 								]),
 								h("div", { className: "text-end" },
 									h("small", null, item.dateISO))
