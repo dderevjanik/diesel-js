@@ -169,6 +169,9 @@
 
 			#onSubmit = () => {
 				const { expression } = this.state;
+				if (expression.trim().length === 0) {
+					return;
+				}
 				if (this.state.history.length) {
 					if (this.state.history[0].expression === expression) {
 						return;
