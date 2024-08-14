@@ -106,3 +106,151 @@ describe("Arithmetic", () => {
 	});
 
 });
+
+describe("Comparison", () => {
+
+	describe("$(=)", () => {
+
+		test("$(=,2,2)", async () => {
+			const output = await evaluate("$(=,2,2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(=,2,-2)", async () => {
+			const output = await evaluate("$(=,2,-2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(=,-2,2)", async () => {
+			const output = await evaluate("$(=,-2,2)");
+			assert.equal(output, "0");
+		});
+
+	});
+
+	describe("$(<)", () => {
+
+		test("$(<,2,2)", async () => {
+			const output = await evaluate("$(<,2,2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(<,2,-2)", async () => {
+			const output = await evaluate("$(<,2,-2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(<,-2,2)", async () => {
+			const output = await evaluate("$(<,-2,2)");
+			assert.equal(output, "1");
+		});
+
+	});
+
+	describe("$(>)", () => {
+
+		test("$(>,2,2)", async () => {
+			const output = await evaluate("$(>,2,2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(>,2,-2)", async () => {
+			const output = await evaluate("$(>,2,-2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(>,-2,2)", async () => {
+			const output = await evaluate("$(>,-2,2)");
+			assert.equal(output, "0");
+		});
+
+	});
+
+	describe("$(!=)", () => {
+
+		test("$(!=,2,2)", async () => {
+			const output = await evaluate("$(!=,2,2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(!=,2,-2)", async () => {
+			const output = await evaluate("$(!=,2,-2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(!=,-2,2)", async () => {
+			const output = await evaluate("$(!=,-2,2)");
+			assert.equal(output, "1");
+		});
+
+	});
+
+	describe("$(<=)", () => {
+
+		test("$(<=,2,2)", async () => {
+			const output = await evaluate("$(<=,2,2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(<=,2,-2)", async () => {
+			const output = await evaluate("$(<=,2,-2)");
+			assert.equal(output, "0");
+		});
+
+		test("$(<=,-2,2)", async () => {
+			const output = await evaluate("$(<=,-2,2)");
+			assert.equal(output, "1");
+		});
+
+	});
+
+	describe("$(>=)", () => {
+
+		test("$(>=,2,2)", async () => {
+			const output = await evaluate("$(>=,2,2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(>=,2,-2)", async () => {
+			const output = await evaluate("$(>=,2,-2)");
+			assert.equal(output, "1");
+		});
+
+		test("$(>=,-2,2)", async () => {
+			const output = await evaluate("$(>=,-2,2)");
+			assert.equal(output, "0");
+		});
+
+	});
+
+});
+
+describe("Logical", () => {
+
+	describe("$(AND)", () => {
+
+		test("$(and)", async () => {
+			const output = await evaluate("$(and)");
+			assert.equal(output, "1");
+		});
+
+		test("$(and,276)", async () => {
+			const output = await evaluate("$(and,276)");
+			assert.equal(output, "276");
+		});
+
+		test("$(and,0x1234,0xF)", async () => {
+			const output = await evaluate("$(and,0x1234,0xF)");
+			assert.equal(output, "4");
+		});
+
+		test("$(and,0x10FF,0x1FF,63)", async () => {
+			const output = await evaluate("$(and,0x10FF,0x1FF,63)");
+			assert.equal(output, "63");
+		});
+
+	});
+
+	// TODO: FINISH
+
+});
