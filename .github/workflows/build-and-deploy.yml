@@ -9,6 +9,12 @@ jobs:
             - name: Checkout 🛎️
               uses: actions/checkout@v4
 
+            - name: Setup Node.js environment 🚀
+              run: npm install
+
+            - name: Run tests 🧪
+              run: npm test
+
             - name: Build 🔧
               run: npm run build-gh-pages
 
