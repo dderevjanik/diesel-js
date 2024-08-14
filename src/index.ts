@@ -75,10 +75,13 @@ export function parseErrOutput(output: string, position: string) {
 	// $(func)??
 	match = /\$\(\s*([a-zA-Z_]\w*)\s*\)\?\?/g.exec(output)
 	if (match && match[1]) {
+		const functionName = match[1];
 		return {
 			dieselName: "$(func)??",
 			name: "Unknown function",
-			message: `Unknown function ${match[1]} at position ${position}`
+			message: ["ANGTOS", "RTOS"].includes(functionName)
+				? `Autocad function ${match[1]} at position ${position} is not supported`
+				: `Unknown function ${match[1]} at position ${position}`
 		}
 	}
 
