@@ -63,10 +63,7 @@ In order to compile DIESEL into javascript, you need to have [Docker](https://ww
 
 ## TODO
 
-- [x] Add `UNIXTENSIONS` functions
 - [ ] Add AutoCAD functions (`rtos`, `angtos`, etc.)
-- [ ] Add unit test based on `regress.dsl` and `regress.mas` from the original DIESEL source code
-- [x] Improve error messages
 - [ ] Publish to NPM
 
 ## Related
