@@ -8,11 +8,11 @@ This **D**umb **I**nterpretively **E**xecuted **S**tring **E**xpression **L**ang
 
 It is short, written in portable C, and is readily integrated into any program. It is useful primarily for programs that need a very rudimentary macro expansion facility without the complexity of a full language such as Lisp or FORTH.
 
-**Playground:** <https://dderevjanik.github.io/diesel-js/>
+**Try it online:** <https://dderevjanik.github.io/diesel-js/>
 
 Our DIESEL documentation with Examples: [./docs/DIESEL.md](./docs/DIESEL.md)
 
-Original DIESEL documentation available at [Fourmilab](https://www.fourmilab.ch/diesel/)
+[Fourmilab DIESEL Documentation](https://www.fourmilab.ch/diesel/)
 
 ## What is DIESEL JS ?
 
@@ -42,6 +42,10 @@ console.log(result); // 3
 
 or by installing diesel-cli globally `npm i -g diesel-cli` and then using `diesel '$(+, 1, 2)'`
 
+### Try it online
+
+[https://dderevjanik.github.io/diesel-js/](https://dderevjanik.github.io/diesel-js/)
+
 ### Examples
 
 Checkout [Diesel Examples](./docs/DIESEL.md#examples)
@@ -68,5 +72,5 @@ In order to compile DIESEL into javascript, you need to have [Docker](https://ww
 
 ## Related
 
-- [Original DIESEL documentation available at Fourmilab](https://www.fourmilab.ch/diesel/)
+- [Fourmilab DIESEL Documentation](https://www.fourmilab.ch/diesel/)
 - [Autocad DIESEL functions reference](https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-F94A885A-4DA2-432B-AC1A-EB49CC6C1C72)
