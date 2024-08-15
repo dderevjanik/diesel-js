@@ -4,7 +4,7 @@ import { evaluate } from "./index";
 
 describe("Arithmetic", () => {
 
-	describe("$(+)", () => {
+	describe("$(+,<val1>,<val2>,...<valn>)", () => {
 
 		test("$(+)", async () => {
 			const output = await evaluate("$(+)");
@@ -28,7 +28,7 @@ describe("Arithmetic", () => {
 
 	});
 
-	describe("$(-)", () => {
+	describe("$(-,<val1>,<val2>,...<valn>)", () => {
 
 		test("$(-)", async () => {
 			const output = await evaluate("$(-)");
@@ -52,7 +52,7 @@ describe("Arithmetic", () => {
 
 	});
 
-	describe("$(*)", () => {
+	describe("$(*,<val1>,<val2>,...<valn>)", () => {
 
 		test("$(*)", async () => {
 			const output = await evaluate("$(*)");
@@ -76,7 +76,7 @@ describe("Arithmetic", () => {
 
 	});
 
-	describe("$(/)", () => {
+	describe("$(/,<val1>,<val2>,...<valn>)", () => {
 
 		test("$(/)", async () => {
 			const output = await evaluate("$(/)");
@@ -109,7 +109,7 @@ describe("Arithmetic", () => {
 
 describe("Comparison", () => {
 
-	describe("$(=)", () => {
+	describe("$(=,<val1>,<val2>)", () => {
 
 		test("$(=,2,2)", async () => {
 			const output = await evaluate("$(=,2,2)");
@@ -128,7 +128,7 @@ describe("Comparison", () => {
 
 	});
 
-	describe("$(<)", () => {
+	describe("$(<,<val1>,<val2>)", () => {
 
 		test("$(<,2,2)", async () => {
 			const output = await evaluate("$(<,2,2)");
@@ -147,7 +147,7 @@ describe("Comparison", () => {
 
 	});
 
-	describe("$(>)", () => {
+	describe("$(>,<val1>,<val2>)", () => {
 
 		test("$(>,2,2)", async () => {
 			const output = await evaluate("$(>,2,2)");
@@ -166,7 +166,7 @@ describe("Comparison", () => {
 
 	});
 
-	describe("$(!=)", () => {
+	describe("$(!=,<val1>,<val2>)", () => {
 
 		test("$(!=,2,2)", async () => {
 			const output = await evaluate("$(!=,2,2)");
@@ -185,7 +185,7 @@ describe("Comparison", () => {
 
 	});
 
-	describe("$(<=)", () => {
+	describe("$(<=,<val1>,<val2>)", () => {
 
 		test("$(<=,2,2)", async () => {
 			const output = await evaluate("$(<=,2,2)");
@@ -204,7 +204,7 @@ describe("Comparison", () => {
 
 	});
 
-	describe("$(>=)", () => {
+	describe("$(>=,<val1>,<val2>)", () => {
 
 		test("$(>=,2,2)", async () => {
 			const output = await evaluate("$(>=,2,2)");
@@ -227,7 +227,26 @@ describe("Comparison", () => {
 
 describe("Logical", () => {
 
-	describe("$(AND)", () => {
+	describe("$(EQ,<val1>,<val2>)", () => {
+
+		test("$(eq,These strings are equal,These strings are equal)", async () => {
+			const output = await evaluate("$(eq,These strings are equal,These strings are equal)");
+			assert.equal(output, "1");
+		});
+
+		test("$(eq,These strings are equal,These strings are not equal)", async () => {
+			const output = await evaluate("$(eq,These strings are equal,These strings are not equal)");
+			assert.equal(output, "0");
+		});
+
+		test("$(eq,These neither,These Neither)", async () => {
+			const output = await evaluate("$(eq,These neither,These Neither)");
+			assert.equal(output, "0");
+		});
+
+	});
+
+	describe("$(AND,<val1>,<val2>,...<valn>))", () => {
 
 		test("$(and)", async () => {
 			const output = await evaluate("$(and)");
@@ -251,7 +270,7 @@ describe("Logical", () => {
 
 	});
 
-	describe("$(OR)", () => {
+	describe("$(OR,<val1>,<val2>,...<valn>))", () => {
 
 		test("$(or)", async () => {
 			const output = await evaluate("$(or)");
@@ -275,7 +294,7 @@ describe("Logical", () => {
 
 	});
 
-	describe("$(XOR)", () => {
+	describe("$(XOR,<val1>,<val2>,...<valn>)", () => {
 
 		test("$(xor)", async () => {
 			const output = await evaluate ("$(xor)");
@@ -299,7 +318,7 @@ describe("Logical", () => {
 
 	});
 
-	describe("$(IF)", () => {
+	describe("$(IF,<expr>,<dotrue>,<dofalse>)", () => {
 
 		test("$(if,0,true,false)", async () => {
 			const output = await evaluate("$(if,0,true,false)");
@@ -342,7 +361,7 @@ describe("Logical", () => {
 
 describe("String", () => {
 
-	describe("$(STRFILL)", async () => {
+	describe("$(STRFILL,<string>,<ncopies>)", async () => {
 
 		test("$(strfill,,500)", async () => {
 			const output = await evaluate("$(strfill,,500)");
@@ -367,7 +386,7 @@ describe("String", () => {
 
 	});
 
-	describe("$(STRLEN)", async () => {
+	describe("(STRLEN,<string>)", async () => {
 
 		test("$(strlen,)", async () => {
 			const output = await evaluate("$(strlen,)");
@@ -386,7 +405,7 @@ describe("String", () => {
 
 	});
 
-	describe("$(SUBSTR", () => {
+	describe("$(SUBSTR,<string>,<start>,<length>)", () => {
 
 		test("$(substr,hello there,7)", async () => {
 			const output = await evaluate("$(substr,hello there,7)");
@@ -410,7 +429,7 @@ describe("String", () => {
 
 	});
 
-	describe("$(UPPER)", () => {
+	describe("$(UPPER,<string>)", () => {
 
 		test("$(upper,lower case)", async () => {
 			const output = await evaluate("$(upper,lower case)");
@@ -427,6 +446,112 @@ describe("String", () => {
 			assert.equal(output, "123456789 !@#$%^&* =+\|`~-_ []{} ;: <>./? MIXED CASE");
 		});
 
+	});
+
+});
+
+describe("Other", () => {
+
+	describe("$(FIX,<value>)", () => {
+
+		test("$(fix,3.75)", async () => {
+			const output = await evaluate("$(fix,3.75)");
+			assert.equal(output, "3");
+		});
+
+		test("$(fix,-11.99)", async () => {
+			const output = await evaluate("$(fix,-11.99)");
+			assert.equal(output, "-11");
+		});
+
+	});
+
+	describe("$(INDEX,<which>,<string>)", () => {
+
+		test("$(index,0,\"first,second,third\")", async () => {
+			const output = await evaluate("$(index,0,\"first,second,third\")");
+			assert.equal(output, "first");
+		});
+
+		test("$(index,1,\"first,second,third\")", async () => {
+			const output = await evaluate("$(index,1,\"first,second,third\")");
+			assert.equal(output, "second");
+		});
+
+		test("$(index,2,\"first,second,third\")", async () => {
+			const output = await evaluate("$(index,2,\"first,second,third\")");
+			assert.equal(output, "third");
+		});
+
+		test("$(index,3,\"first,second,third\")", async () => {
+			const output = await evaluate("$(index,3,\"first,second,third\")");
+			assert.equal(output, "");
+		});
+
+	});
+
+	describe("$(NTH,<which>,<arg0>,<arg1>,...<argN>)", () => {
+
+		test("$(nth,0,first,second,third)", async () => {
+			const output = await evaluate("$(nth,0,first,second,third)");
+			assert.equal(output, "first");
+		});
+
+		test("$(nth,1,first,second,third)", async () => {
+			const output = await evaluate("$(nth,1,first,second,third)");
+			assert.equal(output, "second");
+		});
+
+		test("$(nth,2,first,second,third)", async () => {
+			const output = await evaluate("$(nth,2,first,second,third)");
+			assert.equal(output, "third");
+		});
+
+		test("$(nth,1,$(bogus not evaluated),evaluated,$(bogus not evaluated))", async () => {
+			const output = await evaluate("$(nth,1,$(bogus not evaluated),evaluated,$(bogus not evaluated))");
+			assert.equal(output, "evaluated");
+		});
+
+	});
+
+	describe("$(EVAL,<str>)", () => {
+
+		test("$(eval,\"$(+,1,2,3)\")", async () => {
+			const output = await evaluate("$(eval,\"$(+,1,2,3)\")");
+			assert.equal(output, "6");
+		});
+
+	});
+
+});
+
+describe("Variables", () => {
+
+	// TODO: Finish those test
+
+	test("$(setvar,kelvin,Hello there)$(getvar,kelvin)", async () => {
+		const output = await evaluate("$(setvar,kelvin,Hello there)$(getvar,kelvin)");
+		assert.equal(output, "Hello there");
+	});
+
+	test("$(setvar,pierre,Bonjour mesdames et messieurs)$(getvar,pierre)$(getvar,kelvin)", async () => {
+		const output = await evaluate("$(setvar,pierre,Bonjour mesdames et messieurs)$(getvar,pierre)$(getvar,kelvin)");
+		assert.equal(output, "Bonjour mesdames et messieursHello there");
+	});
+
+	test.skip("$(setvar,kelvin,Buenos dias)$(getvar,pierre)$(getvar,kelvin)", async () => {
+		const output = await evaluate("$(setvar,kelvin,Buenos dias)");
+		assert.equal(output, "Bonjour mesdames et messieursBuenos dias");
+	});
+
+	test.skip("$(setvar,pierre,$(getvar,kelvin))$(getvar,pierre)$(getvar,kelvin)", async () => {
+		const output = await evaluate("$(setvar,pierre,$(getvar,kelvin))$(getvar,pierre)$(getvar,kelvin)");
+		assert.equal(output, "Buenos diasBuenos dias");
+	});
+
+	test.skip("$(setvar,filler,$(strfill,-,75))$(getvar,pierre)$(getvar,kelvin)$(getvar,filler)", async () => {
+		const output = await evaluate("$(setvar,filler,$(strfill,-,75))$(getvar,pierre)$(getvar,kelvin)$(getvar,filler)");
+		assert.equal(output, "Buenos diasBuenos dias");
 	});
 
 });
