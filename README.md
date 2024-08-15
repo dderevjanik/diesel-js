@@ -59,11 +59,17 @@ AutoCAD extends DIESEL with additional functions and variables. This library doe
 
 ## Development
 
-### Compiling DIESEL into WASM
+### (Optional) Compiling DIESEL into WASM
 
 In order to compile DIESEL into javascript, you need to have [Docker](https://www.docker.com/) installed (emscripten is used to compile the C code into WebAssembly).
 
 `npm run compile-diesel`
+
+### Running the project
+
+- `npm i` install dependencies
+- `npm test` to run unit tests (based on Fourmilab DIESEL tests)
+- `ts-node ./src/cli.ts -h` to run the CLI
 
 ## TODO
 
