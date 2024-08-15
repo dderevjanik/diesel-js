@@ -47,6 +47,9 @@ Functions for comparing values and strings:
 
 Functions for performing bitwise logical operations:
 
+- `$(EQ,<val1>,<val2>)`
+  - Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.
+
 - `$(AND,<val1>,<val2>,...<valn>)`
   - Returns the bitwise logical AND of the integers `<val1>` through `<valn>`.
 
@@ -56,27 +59,12 @@ Functions for performing bitwise logical operations:
 - `$(XOR,<val1>,<val2>,...<valn>)`
   - Returns the bitwise logical XOR of the integers `<val1>` through `<valn>`.
 
-## String Functions
-
-Functions for manipulating and analyzing strings:
-
-- `$(EQ,<val1>,<val2>)`
-  - Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.
-
-- `$(EVAL,<str>)`
-  - Evaluates the string `<str>` using the DIESEL evaluator and returns the result.
-
-- `$(FIX,<value>)`
-  - Truncates the real number `<value>` to an integer by discarding any fractional part.
-
 - `$(IF,<expr>,<dotrue>,<dofalse>)`
   - Evaluates and returns `<dotrue>` if `<expr>` is nonzero, otherwise evaluates and returns `<dofalse>`. The branch not chosen is not evaluated.
 
-- `$(INDEX,<which>,<string>)`
-  - Extracts and returns the value from `<string>`, which is delimited by commas. `<which>` selects the value, with the first item numbered zero.
+## String Functions
 
-- `$(NTH,<which>,<arg0>,<arg1>,...<argN>)`
-  - Evaluates and returns the argument selected by `<which>`. `<which>` starts at `0` for `<arg0>`, and so on. Unlike `$(INDEX)`, it returns one of a series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string.
+Functions for manipulating and analyzing strings:
 
 - `$(STRFILL,<string>,<ncopies>)`
   - Returns the result of concatenating `<ncopies>` of `<string>`.
@@ -89,6 +77,20 @@ Functions for manipulating and analyzing strings:
 
 - `$(UPPER,<string>)`
   - Converts `<string>` to uppercase according to the rules of the current locale and returns it.
+
+## Other Functions
+
+- `$(FIX,<value>)`
+  - Truncates the real number `<value>` to an integer by discarding any fractional part.
+
+- `$(INDEX,<which>,<string>)`
+  - Extracts and returns the value from `<string>`, which is delimited by commas. `<which>` selects the value, with the first item numbered zero.
+
+- `$(NTH,<which>,<arg0>,<arg1>,...<argN>)`
+  - Evaluates and returns the argument selected by `<which>`. `<which>` starts at `0` for `<arg0>`, and so on. Unlike `$(INDEX)`, it returns one of a series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string.
+
+- `$(EVAL,<str>)`
+  - Evaluates the string `<str>` using the DIESEL evaluator and returns the result.
 
 ## Variables
 

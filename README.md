@@ -12,7 +12,7 @@ It is short, written in portable C, and is readily integrated into any program. 
 
 Our DIESEL documentation with Examples: [./docs/DIESEL.md](./docs/DIESEL.md)
 
-Original DIESEL Documentation: <https://www.fourmilab.ch/diesel/>
+Original DIESEL documentation available at [Fourmilab](https://www.fourmilab.ch/diesel/)
 
 ## What is DIESEL JS ?
 
@@ -50,7 +50,7 @@ Checkout [Diesel Examples](./docs/DIESEL.md#examples)
 
 AutoCAD extends DIESEL with additional functions and variables. This library does not support all of them, but it does support the most common ones. Functions like `rtos` and `angtos` are not supported in DIESEL JS.
 
-- Autocad DIESEL functions reference <https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-F94A885A-4DA2-432B-AC1A-EB49CC6C1C72>
+- [Autocad DIESEL functions reference](https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-F94A885A-4DA2-432B-AC1A-EB49CC6C1C72)
 
 
 ## Development
@@ -71,6 +71,5 @@ In order to compile DIESEL into javascript, you need to have [Docker](https://ww
 
 ## Related
 
-- DIESEL Homepage <https://www.fourmilab.ch/diesel/>
-- Updated DIESEL docs [./docs/DIESEL.md](./docs/DIESEL.md)
-- Autocad DIESEL functions reference <https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-F94A885A-4DA2-432B-AC1A-EB49CC6C1C72>
+- [Original DIESEL documentation available at Fourmilab](https://www.fourmilab.ch/diesel/)
+- [Autocad DIESEL functions reference](https://help.autodesk.com/view/ACDLT/2024/ENU/?guid=GUID-F94A885A-4DA2-432B-AC1A-EB49CC6C1C72)
