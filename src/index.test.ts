@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, test } from "node:test";
-import { evaluate } from "./index";
+import { evaluate, evaluateC } from "./index";
 
 describe("Arithmetic", () => {
 
@@ -552,6 +552,111 @@ describe("Variables", () => {
 	test.skip("$(setvar,filler,$(strfill,-,75))$(getvar,pierre)$(getvar,kelvin)$(getvar,filler)", async () => {
 		const output = await evaluate("$(setvar,filler,$(strfill,-,75))$(getvar,pierre)$(getvar,kelvin)$(getvar,filler)");
 		assert.equal(output, "Buenos diasBuenos dias");
+	});
+
+});
+
+describe("Unix", () => {
+
+	// TODO: Add test for UNIX functions
+
+});
+
+describe("Errors", () => {
+
+	describe("evaluate", () => {
+		// TODO: Finish
+	});
+
+	describe("evaluateC", () => {
+
+		describe("Missing right paren", () => {
+
+			test("$(bogus", async () => {
+				const output = await evaluateC("$(bogus");
+				assert.equal(output.output, "$?");
+				assert.equal(output.return, 7);
+			});
+
+			test("$(bogus$(bogus", async () => {
+				const output = await evaluateC("$(bogus");
+				assert.equal(output.output, "$?");
+				assert.equal(output.return, 7);
+			});
+
+		});
+
+		describe("Runaway string", async () => {
+
+			test("$(\"Where's the closing quote?)", async () => {
+				const output = await evaluateC("$(\"Where's the closing quote?)");
+				assert.equal(output.output, "$?");
+				assert.equal(output.return, 30);
+			});
+
+			test("$(\"\"\"Here's trouble\"\")", async () => {
+				const output = await evaluateC("$(\"\"\"Here's trouble\"\")");
+				assert.equal(output.output, "$?");
+				assert.equal(output.return, 22);
+			});
+
+		});
+
+		describe("Unknown function", async () => {
+
+			test("$(binky)", async () => {
+				const output = await evaluateC("$(binky)");
+				assert.equal(output.output, " $(BINKY)?? ");
+				assert.equal(output.return, 8);
+			});
+
+			test("$()", async () => {
+				const output = await evaluateC("$()");
+				assert.equal(output.output, " $()?? ");
+				assert.equal(output.return, 3);
+			});
+
+		});
+
+		describe("Incorrect arguments", async () => {
+
+			test("$(+,1,2,three)", async () => {
+				const output = await evaluateC("$(+,1,2,three)");
+				assert.equal(output.output, " $(+,??) ");
+				assert.equal(output.return, 14);
+			});
+
+			test("$(upper,only takes,one argument)", async () => {
+				const output = await evaluateC("$(upper,only takes,one argument)");
+				assert.equal(output.output, " $(UPPER,??) ");
+				assert.equal(output.return, 32);
+			});
+
+			test("$(=,1)", async () => {
+				const output = await evaluateC("$(=,1)");
+				assert.equal(output.output, " $(=,??) ");
+				assert.equal(output.return, 6);
+			});
+
+		});
+
+		describe("String too long", async () => {
+
+			test.skip("$(strfill,.,80)$(strfill,-,80)$(strfill,*,80)", async () => {
+				// TODO: Fix this test
+				const output = await evaluateC("$(strfill,.,80)$(strfill,-,80)$(strfill,*,80)");
+				assert.equal(output.output, " $(++)");
+				assert.equal(output.return, 7);
+			});
+
+			test("$(strfill,*hello*,100)", async () => {
+				const output = await evaluateC("$(strfill,*hello*,100)");
+				assert.equal(output.output, " $(++)");
+				assert.equal(output.return, 22);
+			});
+
+		});
+
 	});
 
 });
