@@ -9,96 +9,169 @@ DIESEL provides various functions for string and arithmetic operations. This doc
 
 Functions for performing basic arithmetic operations:
 
-- `$(+,<val1>,<val2>,...<valn>)`
-  - Returns the sum of the numbers `<val1>`, `<val2>`, ... `<valn>`.
+### `$(+,<val1>,<val2>,...<valn>)`
 
-- `$(-,<val1>,<val2>,...<valn>)`
-  - Returns the result of subtracting the numbers `<val2>` through `<valn>` from `<val1>`.
+Returns the sum of the numbers `<val1>`, `<val2>`, ... `<valn>`.
 
-- `$(*,<val1>,<val2>,...<valn>)`
-  - Returns the result of multiplying the numbers `<val1>`, `<val2>`, ... `<valn>`.
+### `$(-,<val1>,<val2>,...<valn>)`
 
-- `$(/,<val1>,<val2>,...<valn>)`
-  - Returns the result of dividing the number `<val1>` by `<val2>`, ... `<valn>`.
+Returns the result of subtracting the numbers `<val2>` through `<valn>` from `<val1>`.
+
+### `$(*,<val1>,<val2>,...<valn>)`
+
+Returns the result of multiplying the numbers `<val1>`, `<val2>`, ... `<valn>`.
+
+### `$(/,<val1>,<val2>,...<valn>)`
+
+Returns the result of dividing the number `<val1>` by `<val2>`, ... `<valn>`.
 
 ## Comparison Functions
 
 Functions for comparing values and strings:
 
-- `$(=,<val1>,<val2>)`
-  - Returns `1` if the numbers `<val1>` and `<val2>` are equal, otherwise returns `0`.
+### `$(=,<val1>,<val2>)`
 
-- `$(<,<val1>,<val2>)`
-  - Returns `1` if the number `<val1>` is less than `<val2>`, otherwise returns `0`.
+Returns `1` if the numbers `<val1>` and `<val2>` are equal, otherwise returns `0`.
 
-- `$(>,<val1>,<val2>)`
-  - Returns `1` if the number `<val1>` is greater than `<val2>`, otherwise returns `0`.
+### `$(<,<val1>,<val2>)`
 
-- `$(!=,<val1>,<val2>)`
-  - Returns `1` if the numbers `<val1>` and `<val2>` are not equal, otherwise returns `0`.
+Returns `1` if the number `<val1>` is less than `<val2>`, otherwise returns `0`.
 
-- `$(<=,<val1>,<val2>)`
-  - Returns `1` if the number `<val1>` is less than or equal to `<val2>`, otherwise returns `0`.
+### `$(>,<val1>,<val2>)`
 
-- `$(>=,<val1>,<val2>)`
-  - Returns `1` if the number `<val1>` is greater than or equal to `<val2>`, otherwise returns `0`.
+Returns `1` if the number `<val1>` is greater than `<val2>`, otherwise returns `0`.
+
+### `$(!=,<val1>,<val2>)`
+
+Returns `1` if the numbers `<val1>` and `<val2>` are not equal, otherwise returns `0`.
+
+### `$(<=,<val1>,<val2>)`
+
+Returns `1` if the number `<val1>` is less than or equal to `<val2>`, otherwise returns `0`.
+
+### `$(>=,<val1>,<val2>)`
+
+Returns `1` if the number `<val1>` is greater than or equal to `<val2>`, otherwise returns `0`.
 
 ## Logical Functions
 
 Functions for performing bitwise logical operations:
 
-- `$(EQ,<val1>,<val2>)`
-  - Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.
+### `$(EQ,<val1>,<val2>)`
 
-- `$(AND,<val1>,<val2>,...<valn>)`
-  - Returns the bitwise logical AND of the integers `<val1>` through `<valn>`.
+Returns `1` if the strings `<val1>` and `<val2>` are identical, otherwise returns `0`.
 
-- `$(OR,<val1>,<val2>,...<valn>)`
-  - Returns the bitwise logical OR of the integers `<val1>` through `<valn>`.
+### `$(AND,<val1>,<val2>,...<valn>)`
 
-- `$(XOR,<val1>,<val2>,...<valn>)`
-  - Returns the bitwise logical XOR of the integers `<val1>` through `<valn>`.
+Returns the bitwise logical AND of the integers `<val1>` through `<valn>`.
 
-- `$(IF,<expr>,<dotrue>,<dofalse>)`
-  - Evaluates and returns `<dotrue>` if `<expr>` is nonzero, otherwise evaluates and returns `<dofalse>`. The branch not chosen is not evaluated.
+### `$(OR,<val1>,<val2>,...<valn>)`
+
+Returns the bitwise logical OR of the integers `<val1>` through `<valn>`.
+
+### `$(XOR,<val1>,<val2>,...<valn>)`
+
+Returns the bitwise logical XOR of the integers `<val1>` through `<valn>`.
+
+### `$(IF,<expr>,<dotrue>,<dofalse>)`
+
+Evaluates and returns `<dotrue>` if `<expr>` is nonzero, otherwise evaluates and returns `<dofalse>`. The branch not chosen is not evaluated.
 
 ## String Functions
 
 Functions for manipulating and analyzing strings:
 
-- `$(STRFILL,<string>,<ncopies>)`
-  - Returns the result of concatenating `<ncopies>` of `<string>`.
+### `$(STRFILL,<string>,<ncopies>)`
 
-- `$(STRLEN,<string>)`
-  - Returns the length of `<string>` in characters.
+Returns the result of concatenating `<ncopies>` of `<string>`.
 
-- `$(SUBSTR,<string>,<start>,<length>)`
-  - Returns the substring of `<string>` starting at character `<start>` and extending for `<length>` characters. If `<length>` is omitted, returns the entire remaining length of the string. Characters are numbered from `1`.
+### `$(STRLEN,<string>)`
 
-- `$(UPPER,<string>)`
-  - Converts `<string>` to uppercase according to the rules of the current locale and returns it.
+Returns the length of `<string>` in characters.
+
+### `$(SUBSTR,<string>,<start>,<length>)`
+
+Returns the substring of `<string>` starting at character `<start>` and extending for `<length>` characters. If `<length>` is omitted, returns the entire remaining length of the string. Characters are numbered from `1`.
+
+### `$(UPPER,<string>)`
+
+Converts `<string>` to uppercase according to the rules of the current locale and returns it.
 
 ## Other Functions
 
-- `$(FIX,<value>)`
-  - Truncates the real number `<value>` to an integer by discarding any fractional part.
+### `$(FIX,<value>)`
 
-- `$(INDEX,<which>,<string>)`
-  - Extracts and returns the value from `<string>`, which is delimited by commas. `<which>` selects the value, with the first item numbered zero.
+Truncates the real number `<value>` to an integer by discarding any fractional part.
 
-- `$(NTH,<which>,<arg0>,<arg1>,...<argN>)`
-  - Evaluates and returns the argument selected by `<which>`. `<which>` starts at `0` for `<arg0>`, and so on. Unlike `$(INDEX)`, it returns one of a series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string.
+### `$(INDEX,<which>,<string>)`
 
-- `$(EVAL,<str>)`
-  - Evaluates the string `<str>` using the DIESEL evaluator and returns the result.
+Extracts and returns the value from `<string>`, which is delimited by commas. `<which>` selects the value, with the first item numbered zero.
+
+### `$(NTH,<which>,<arg0>,<arg1>,...<argN>)`
+
+Evaluates and returns the argument selected by `<which>`. `<which>` starts at `0` for `<arg0>`, and so on. Unlike `$(INDEX)`, it returns one of a series of arguments to the function, while `$(INDEX)` extracts a value from a comma-delimited string.
+
+### `$(EVAL,<str>)`
+
+Evaluates the string `<str>` using the DIESEL evaluator and returns the result.
 
 ## Variables
 
-- `$(GETVAR,varname)`
-  - Returns the value stored in `varname`. If no variable with the name `varname` exists, a bad argument error is reported.
+> [!NOTE]
+> DIESEL must be compiled with `VARARGS` to enable variable support.
 
-- `$(SETVAR,varname,value)`
-  - Stores the string `value` into `varname`. If no variable called `varname` exists, a new variable is created.
+### `$(GETVAR,varname)`
+
+Returns the value stored in `varname`. If no variable with the name `varname` exists, a bad argument error is reported.
+
+### `$(SETVAR,varname,value)`
+
+Stores the string `value` into `varname`. If no variable called `varname` exists, a new variable is created.
+
+## Unixtensions
+
+> [!NOTE]
+> DIESEL must be compiled with `UNIXTENSIONS` to enable these functions.
+
+### `$(GETENV,varname)`
+
+Returns the value of the environment variable `varname`. If the environment variable is not set, an empty string is returned.
+
+### `$(TIME)`
+
+Returns the current time in seconds since the Unix epoch (00:00:00 UTC, January 1, 1970).
+
+### `$(EDTIME,<time>,<picture>)`
+Edit  the  Unix  time `<time>` to format `<picture>`.  If `<time>` is `0`,
+the current date and time is edited (this is  just  shorthand  for
+the equivalent `"$(EDTIME,$(TIME),<picture>)"`.).
+
+Assume the date is: Thursday, 2 September 1993 4:53:17
+
+Format phrases:
+- **D** 2
+- **DD** 02
+- **DDD** Thu
+- **DDDD** Thursday
+- **M** 9
+- **MO** 09
+- **MON** Sep
+- **MONTH** September
+- **YY** 93
+- **YYYY** 1993
+- **H** 4
+- **HH** 04
+- **MM** 53
+- **SS** 17
+- **AM/PM** AM
+- **am/pm** am
+- **A/P** A
+- **a/p** a
+
+If  any  of the "AM/PM" phrases appear in the picture, the "H" and
+"HH" phrases will edit the time according to  the  12  hour  civil
+clock  (12:00-12:59-1:00-11:59)  instead  of  the  24  hour  clock
+(00:00-23:59).
 
 ## Errors
 

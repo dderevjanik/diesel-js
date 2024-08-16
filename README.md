@@ -18,7 +18,14 @@ Our DIESEL documentation with Examples: [./docs/DIESEL.md](./docs/DIESEL.md)
 
 Diesel JS is a JavaScript compilation of the DIESEL language using [Emscripten](https://emscripten.org/). It is a simple and easy-to-use library that allows you to evaluate DIESEL expressions in JavaScript.
 
-Diesel JS supports **VARIABLES**, enabling you to use `SETVAR` and `GETVAR` functions to store and retrieve variables.
+Diesel JS is compiled with
+- **VARIABLES**
+  - [SETVAR](./docs/DIESEL.md#variables)
+  - [GETVAR](./docs/DIESEL.md#variables)
+- **UNIXTENSIONS**
+  - [GETENV](./docs/DIESEL.md#getenvvarname)
+  - [TIME](./docs/DIESEL.md#time)
+  - [EDTIME](./docs/DIESEL.md#edtimetimepicture)
 
 ## Usage
 
