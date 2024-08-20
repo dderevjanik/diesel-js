@@ -29,15 +29,14 @@ Diesel JS is compiled with
 
 ## Usage
 
-> [!WARNING]
-> This library is not published to NPM yet, so you need to clone the repository and build it yourself.
+Install package `npm i diesel`
 
 ### Browser
 
 ### Node
 
 ```javascript
-import { evaluate } from "@diesel/core";
+import { evaluate } from "diesel";
 
 const result = await evaluate("$(+, 1, 2)");
 console.log(result); // 3
@@ -45,9 +44,9 @@ console.log(result); // 3
 
 ### CLI
 
-`npx diesel-cli '$(+, 1, 2)'`
+`npx diesel '$(+, 1, 2)'`
 
-or by installing diesel-cli globally `npm i -g diesel-cli` and then using `diesel '$(+, 1, 2)'`
+or by installing diesel-cli globally `npm i -g diesel` and then using `diesel '$(+, 1, 2)'`
 
 ### Try it online
 
