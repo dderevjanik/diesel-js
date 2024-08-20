@@ -2,9 +2,9 @@
 	"name": "diesel",
 	"version": "1.0.0",
 	"description": "Dumb Interpretively Executed String Expression Language",
-	"main": "index.js",
+	"main": "./dist/index.js",
 	"bin": {
-		"diesel": "./dist/diesel.js"
+		"diesel": "./dist/cli.js"
 	},
 	"scripts": {
 		"test": "TS_NODE_TRANSPILE_ONLY=true node --test --loader=ts-node/esm --no-warnings src/*.test.ts",
