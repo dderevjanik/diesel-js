@@ -1,6 +1,6 @@
 {
 	"name": "diesel",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Dumb Interpretively Executed String Expression Language",
 	"main": "./dist/index.js",
 	"bin": {
