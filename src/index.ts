@@ -106,7 +106,7 @@ export function parseErrOutput(output: string, position: string) {
  *
  * @see {@link https://www.fourmilab.ch/diesel/}
  */
-export async function evaluate(expresion: string) {
+export async function evaluate(expresion: string): Promise<string> {
     await moduleInitialized;
     const outputStr = "";
 
