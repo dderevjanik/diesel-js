@@ -2,7 +2,7 @@
 
 import process from "node:process";
 import { parseArgs } from "node:util";
-import { evaluate } from "./index";
+import { DieselError, evaluate } from "./index";
 
 const args = parseArgs({
 	allowPositionals: true,
@@ -17,9 +17,18 @@ const args = parseArgs({
 (async function () {
 	if (process.stdin.isTTY) {
 		if (args.positionals.length > 0) {
-			const evaluated = await evaluate(args.positionals[0]);
-			console.log(evaluated);
-			process.exit(0);
+			try {
+				const evaluated = await evaluate(args.positionals[0]);
+				console.log(evaluated);
+				process.exit(0);
+			} catch (err: unknown) {
+				if (err instanceof DieselError) {
+					console.error(err.message);
+				} else {
+					console.error(err);
+				}
+				process.exit(1);
+			}
 		}
 		if (
 			args.values.help

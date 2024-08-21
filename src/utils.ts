@@ -1,5 +1,15 @@
 
-export class DieselSyntaxError extends Error {
+export class DieselError extends Error {
+	name: string;
+	dieselName: string;
+    constructor(message: any) {
+        super(message);
+        this.name = "DieselError";
+		this.dieselName = "";
+    }
+}
+
+export class DieselSyntaxError extends DieselError {
 	dieselName: string;
     constructor(message = "Syntax error") {
         super(message);
@@ -8,7 +18,7 @@ export class DieselSyntaxError extends Error {
     }
 }
 
-export class DieselOutputTooLongError extends Error {
+export class DieselOutputTooLongError extends DieselError {
 	dieselName: string;
     constructor(message = "Output string too long") {
         super(message);
@@ -17,7 +27,7 @@ export class DieselOutputTooLongError extends Error {
     }
 }
 
-export class DieselIncorrectFunctionArgumentsError extends Error {
+export class DieselIncorrectFunctionArgumentsError extends DieselError {
 	dieselName: string;
     constructor(message = "Incorrect function arguments") {
         super(message);
@@ -26,7 +36,7 @@ export class DieselIncorrectFunctionArgumentsError extends Error {
     }
 }
 
-export class DieselUnknownFunctionError extends Error {
+export class DieselUnknownFunctionError extends DieselError {
 	dieselName: string;
     constructor(message = "Unknown function") {
         super(message);
@@ -35,7 +45,7 @@ export class DieselUnknownFunctionError extends Error {
     }
 }
 
-export class DieselUnknownError extends Error {
+export class DieselUnknownError extends DieselError {
 	dieselName: string;
     constructor(message = "Unknown error") {
         super(message);
@@ -43,8 +53,6 @@ export class DieselUnknownError extends Error {
 		this.dieselName = "";
     }
 }
-
-export type DieselError = DieselSyntaxError | DieselOutputTooLongError | DieselIncorrectFunctionArgumentsError | DieselUnknownFunctionError | DieselUnknownError;
 
 const AUTOCAD_FUNCTIONS = ["ANGTOS", "RTOS"];
 
