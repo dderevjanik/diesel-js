@@ -117,6 +117,5 @@ export function createDieselError(output: string, position: string): DieselError
 		const errMessage = AUTOCAD_FUNCTIONS.includes(functionName) ? `Autocad function ${match[1]} is not supported` : `Unknown function ${match[1]}`;
 		return new DieselUnknownFunctionError(errMessage);
 	}
-	console.log(">>>>>", output, position);
 	return new DieselUnknownError(`Unknown error at position ${position}`);
 }
