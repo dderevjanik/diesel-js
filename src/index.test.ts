@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, test } from "node:test";
-import { evaluate, evaluateC } from "./index";
+import { DieselIncorrectFunctionArgumentsError, DieselOutputTooLongError, DieselSyntaxError, DieselUnknownError, DieselUnknownFunctionError, evaluate, evaluateC } from "./index";
 
 describe("Arithmetic", () => {
 
@@ -565,7 +565,75 @@ describe("Unix", () => {
 describe("Errors", () => {
 
 	describe("evaluate", () => {
-		// TODO: Finish
+
+		describe("Missing right paren", () => {
+
+			test("$(bogus", async () => {
+				await assert.rejects(async () => await evaluate("$(bogus"), DieselSyntaxError);
+			});
+
+			test("$(bogus$(bogus", async () => {
+				await assert.rejects(async () => await evaluate("$(bogus$(bogus"), DieselSyntaxError);
+			});
+
+		});
+
+		describe("Runaway string", async () => {
+
+			test("$(\"Where's the closing quote?)", async () => {
+				await assert.rejects(async () => await evaluate("$(\"\"\"Here's trouble\"\")"), DieselSyntaxError);
+			});
+
+			test("$(\"\"\"Here's trouble\"\")", async () => {
+				await assert.rejects(async () => await evaluate("$(\"\"\"Here's trouble\"\")"), DieselSyntaxError);
+			});
+
+		});
+
+		describe("Unknown function", async () => {
+
+			test("$(binky)", async () => {
+				await assert.rejects(async () => await evaluate("$(binky)"), DieselUnknownFunctionError);
+			});
+
+			test("$()", async () => {
+				// TODO: Is this correct type of error?
+				await assert.rejects(async () => await evaluate("$()"), DieselUnknownError);
+			});
+
+		});
+
+		describe("Incorrect arguments", async () => {
+
+			// TODO: Fix those tests
+
+			test.skip("$(+,1,2,three)", async () => {
+				await assert.rejects(async () => await evaluate("$(+,1,2,three)"), DieselIncorrectFunctionArgumentsError);
+			});
+
+			test.skip("$(upper,only takes,one argument)", async () => {
+				await assert.rejects(async () => await evaluate("$(upper,only takes,one argument)"), DieselIncorrectFunctionArgumentsError);
+			});
+
+			test.skip("$(=,1)", async () => {
+				await assert.rejects(async () => await evaluate("$(=,1)"), DieselIncorrectFunctionArgumentsError);
+			});
+
+		});
+
+		describe("String too long", async () => {
+
+			test.skip("$(strfill,.,80)$(strfill,-,80)$(strfill,*,80)", async () => {
+				// TODO: Fix this test
+				await assert.rejects(async () => await evaluate("$(strfill,.,80)$(strfill,-,80)$(strfill,*,80)"), DieselOutputTooLongError);
+			});
+
+			test.skip("$(strfill,*hello*,100)", async () => {
+				await assert.rejects(async () => await evaluate("$(strfill,*hello*,100)"), DieselOutputTooLongError);
+			});
+
+		});
+
 	});
 
 	describe("evaluateC", () => {
