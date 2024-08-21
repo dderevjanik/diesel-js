@@ -43,7 +43,7 @@ const args = parseArgs({
 				"USAGE",
 				"	Evaluate an expression",
 				"",
-				"	diesel $(+,1,2,3,4,5)",
+				"	diesel '$(+,1,2,3,4,5)'",
 				"	output: 15",
 				"",
 			].join("\n"));
