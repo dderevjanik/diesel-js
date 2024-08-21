@@ -103,7 +103,7 @@ export function createDieselError(output: string, position: string): DieselError
  	}
 
 	// $(func,??)
-	match = /\$\(\s*([a-zA-Z_]\w*)\s*,\?\?\)/g.exec(output);
+	match = /\$\(\s*([^,]+)\s*,\?\?\)/g.exec(output);
 	if (match && match[1]) {
 		const functionName = match[1];
 		const correctUsage = FUNC_TO_DESC[functionName];
@@ -111,11 +111,12 @@ export function createDieselError(output: string, position: string): DieselError
 	}
 
 	// $(func)??
-	match = /\$\(\s*([a-zA-Z_]\w*)\s*\)\?\?/g.exec(output)
+	match = /\$\(\s*([^,]+)\s*\)\?\?/g.exec(output)
 	if (match && match[1]) {
 		const functionName = match[1];
 		const errMessage = AUTOCAD_FUNCTIONS.includes(functionName) ? `Autocad function ${match[1]} is not supported` : `Unknown function ${match[1]}`;
 		return new DieselUnknownFunctionError(errMessage);
 	}
+	console.log(">>>>>", output, position);
 	return new DieselUnknownError(`Unknown error at position ${position}`);
 }

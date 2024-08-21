@@ -607,15 +607,15 @@ describe("Errors", () => {
 
 			// TODO: Fix those tests
 
-			test.skip("$(+,1,2,three)", async () => {
+			test("$(+,1,2,three)", async () => {
 				await assert.rejects(async () => await evaluate("$(+,1,2,three)"), DieselIncorrectFunctionArgumentsError);
 			});
 
-			test.skip("$(upper,only takes,one argument)", async () => {
+			test("$(upper,only takes,one argument)", async () => {
 				await assert.rejects(async () => await evaluate("$(upper,only takes,one argument)"), DieselIncorrectFunctionArgumentsError);
 			});
 
-			test.skip("$(=,1)", async () => {
+			test("$(=,1)", async () => {
 				await assert.rejects(async () => await evaluate("$(=,1)"), DieselIncorrectFunctionArgumentsError);
 			});
 
