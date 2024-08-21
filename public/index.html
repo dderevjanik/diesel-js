@@ -31,6 +31,8 @@
 			return new Date(date).setHours(0,0,0,0) == new Date().setHours(0,0,0,0);
 		}
 
+		const AUTOCAD_FUNCTIONS = ["ANGTOS", "RTOS"];
+
 		const FUNC_TO_DESC = {
 			// Arithemtic
 			"+": "$(+,<val1>,<val2>,...<valn>)",
@@ -66,22 +68,22 @@
 			"GETENV": "$(GETENV,<name>)",
 			"TIME": "$(TIME)",
 			"EDTIME": "$(EDTIME,<time>,<picture>)",
-		}
+		};
 
 		/** @param {string} err */
-		function parseErrOutput(output, position) {
+		export function parseErrOutput(output, position) {
 			let match = null;
 			if (output.trim() === "$?") {
 				return {
 					dieselName: "$?",
 					name: "Syntax error",
-					message: `Syntax error at position ${position}`
+					message: `Syntax error, missing right parenthesis at position ${position}`
 				}
 			} else if (output.trim() === "$++") {
 				return {
 					dieselName: "$++",
 					name: "Output string too long",
-					message: `Output string too long at position ${position}`
+					message: `Output string too long`
 				}
 			}
 
@@ -93,7 +95,7 @@
 				return {
 					dieselName: "$(func,??)",
 					name: "Incorrect function arguments",
-					message: `Incorrect function '${functionName}' arguments at position ${position}. ${correctUsage ? `Correct usage: ${correctUsage}.` : ""}`
+					message: `Incorrect function '${functionName}'. ${correctUsage ? 'Correct usage: ' + correctUsage : ''}`
 				}
 			}
 
@@ -104,9 +106,9 @@
 				return {
 					dieselName: "$(func)??",
 					name: "Unknown function",
-					message: ["ANGTOS", "RTOS"].includes(functionName)
-						? `Autocad function ${match[1]} at position ${position} is not supported`
-						: `Unknown function ${match[1]} at position ${position}`
+					message: AUTOCAD_FUNCTIONS.includes(functionName)
+						? `Autocad function ${match[1]} is not supported`
+						: `Unknown function ${match[1]}`
 				}
 			}
 
