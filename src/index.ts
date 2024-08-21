@@ -7,6 +7,8 @@ const moduleInitialized = new Promise<void>((resolve) => {
     };
 });
 
+const AUTOCAD_FUNCTIONS = ["ANGTOS", "RTOS"];
+
 const FUNC_TO_DESC = {
 	// Arithemtic
 	"+": "$(+,<val1>,<val2>,...<valn>)",
@@ -50,13 +52,13 @@ export function parseErrOutput(output: string, position: string) {
 		return {
 			dieselName: "$?",
 			name: "Syntax error",
-			message: `Syntax error at position ${position}`
+			message: `Syntax error, missing right parenthesis at position ${position}`
 		}
 	} else if (output.trim() === "$++") {
 		return {
 			dieselName: "$++",
 			name: "Output string too long",
-			message: `Output string too long at position ${position}`
+			message: `Output string too long`
 		}
  	}
 
@@ -68,7 +70,7 @@ export function parseErrOutput(output: string, position: string) {
 		return {
 			dieselName: "$(func,??)",
 			name: "Incorrect function arguments",
-			message: `Incorrect function '${functionName}' arguments at position ${position}. ${correctUsage ? `Correct usage: ${correctUsage}.` : ""}`
+			message: `Incorrect function '${functionName}'. ${correctUsage ? 'Correct usage: ' + correctUsage : ''}`
 		}
 	}
 
@@ -79,9 +81,9 @@ export function parseErrOutput(output: string, position: string) {
 		return {
 			dieselName: "$(func)??",
 			name: "Unknown function",
-			message: ["ANGTOS", "RTOS"].includes(functionName)
-				? `Autocad function ${match[1]} at position ${position} is not supported`
-				: `Unknown function ${match[1]} at position ${position}`
+			message: AUTOCAD_FUNCTIONS.includes(functionName)
+				? `Autocad function ${match[1]} is not supported`
+				: `Unknown function ${match[1]}`
 		}
 	}
 
