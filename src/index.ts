@@ -28,15 +28,16 @@ const FUNC_TO_DESC = {
 	"XOR": "$(XOR,<val1>,<val2>,...<valn>)",
 	// String
 	"EQ": "$(EQ,<val1>,<val2>)",
-	"EVAL": "$(EVAL,<string>)",
-	"FIX": "$(FIX,<value>)",
 	"IF": "$(IF,<condition>,<true>,<false>)",
-	"INDEX": "$(INDEX,<string>,<index>)",
-	"NTH": "$(NTH,<which>,<arg0>,<arg1>,...<argn>)",
 	"STRFILL": "$(STRFILL,<string>,<ncopies>)",
 	"STRLEN": "$(STRLEN,<string>)",
 	"SUBSTR": "$(SUBSTR,<string>,<start>,<length>)",
 	"UPPER": "$(UPPER,<string>)",
+	// Other Functions
+	"FIX": "$(FIX,<value>)",
+	"INDEX": "$(INDEX,<string>,<index>)",
+	"NTH": "$(NTH,<which>,<arg0>,<arg1>,...<argn>)",
+	"EVAL": "$(EVAL,<string>)",
 	// Variables
 	"GETVAR": "$(GETVAR,<name>)",
 	"SETVAR": "$(SETVAR,<name>,<value>)",
