@@ -1,11 +1,6 @@
 name: release-please
 
 on:
-    workflow_run:
-        workflows:
-            - QA
-        types:
-            - completed
     # manual
     workflow_dispatch:
         inputs:
